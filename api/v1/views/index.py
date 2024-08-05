@@ -1,7 +1,12 @@
 #!/usr/bin/python3
 """index.py to define API routes for status and statistics"""
 
-from flask import Flask, Blueprint, jsonify
+import sys
+import os
+from flask import Blueprint, jsonify
+
+# Add the path to the 'models' directory to the system path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 from models import storage
 # Define the mapping of endpoint names to model names
 hbnbText = {
@@ -33,3 +38,4 @@ def hbnb_stats():
 if __name__ == "__main__":
     # This script is intended to be used with the main application
     pass
+
