@@ -88,9 +88,9 @@ class TestBaseModel(unittest.TestCase):
         toc = datetime.now()
         print(f"inst1 created_at: {inst1.created_at}, tic: {tic}, toc: {toc}")
         self.assertTrue(tic <= inst1.created_at <= toc)
-        
+
         time.sleep(0.1)  # Increased sleep time for more noticeable time difference
-        
+
         tic = datetime.now()
         inst2 = BaseModel()
         toc = datetime.now()
