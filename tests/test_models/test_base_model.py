@@ -7,6 +7,7 @@ import pep8 as pycodestyle
 import time
 import unittest
 from unittest import mock
+
 BaseModel = models.base_model.BaseModel
 module_doc = models.base_model.__doc__
 
@@ -85,11 +86,15 @@ class TestBaseModel(unittest.TestCase):
         tic = datetime.now()
         inst1 = BaseModel()
         toc = datetime.now()
+        print(f"inst1 created_at: {inst1.created_at}, tic: {tic}, toc: {toc}")
         self.assertTrue(tic <= inst1.created_at <= toc)
-        time.sleep(1e-4)
+        
+        time.sleep(0.1)  # Increased sleep time for more noticeable time difference
+        
         tic = datetime.now()
         inst2 = BaseModel()
         toc = datetime.now()
+        print(f"inst2 created_at: {inst2.created_at}, tic: {tic}, toc: {toc}")
         self.assertTrue(tic <= inst2.created_at <= toc)
         self.assertEqual(inst1.created_at, inst1.updated_at)
         self.assertEqual(inst2.created_at, inst2.updated_at)
@@ -158,3 +163,4 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(old_created_at, new_created_at)
         self.assertTrue(mock_storage.new.called)
         self.assertTrue(mock_storage.save.called)
+
